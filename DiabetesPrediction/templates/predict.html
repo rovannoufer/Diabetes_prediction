@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #f8f9fa; /* Set a light background color */
+        }
+
+        .main {
+            margin-top: 80px;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+            text-align: center; /* Center align content */
+        }
+
+        h1 {
+            font-family: 'Times New Roman', sans-serif;
+            color: #142a4f;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #FFA500;
+            border: none;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 10px 16px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        input {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            width: 100%; /* Make the input fields full-width */
+        }
+
+        p em {
+            color: gray;
+        }
+
+        .gfg {
+            color: green;
+            font-size: 30px;
+        }
+
+        .navbar {
+            background-color: #142a4f;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'predict' %}">Prediction Page</a>
+        {% if user.is_authenticated %}
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'logout' %}"> Logout</a>
+        {% else %}
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'login' %}">Login</a>
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'signup' %}">Signup</a>
+        {% endif%}
+
+    </nav>
+
+    <div class="main">
+        {% if user.is_authenticated %}
+        <p><em>WELCOME TO THE PREDICT PAGE  <b>{{ user.username }} </b></em></p>
+        <h1>It's just a prediction, Do consult with a Doctor</h1>
+        <form action="result">
+            <div class="form-group">
+                <label for="n1">Pregnancies:</label>
+                <input type="text" class="form-control" id="n1" name="n1">
+            </div>
+            <div class="form-group">
+                <label for="n2">Glucose:</label>
+                <input type="text" class="form-control" id="n2" name="n2">
+            </div>
+            <div class="form-group">
+                <label for="n3">Blood Pressure:</label>
+                <input type="text" class="form-control" id="n3" name="n3">
+            </div>
+            <div class="form-group">
+                <label for="n4">Skin Thickness:</label>
+                <input type="text" class="form-control" id="n4" name="n4">
+            </div>
+            <div class="form-group">
+                <label for="n5">Insulin:</label>
+                <input type="text" class="form-control" id="n5" name="n5">
+            </div>
+            <div class="form-group">
+                <label for="n6">BMI:</label>
+                <input type="text" class="form-control" id="n6" name="n6">
+            </div>
+            <div class="form-group">
+                <label for="n7">Diabetes Pedigree Function:</label>
+                <input type="text" class="form-control" id="n7" name="n7">
+            </div>
+            <div class="form-group">
+                <label for="n8">Age:</label>
+                <input type="text" class="form-control" id="n8" name="n8">
+            </div>
+            <button type="submit" style="background-color: #142a4f;" class="btn btn-primary">PREDICT</button>
+        </form>
+        <div class="row">
+            <h2><em>{{result2}}</em></h2>
+        </div>
+
+        {% else %}
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'predict' %}">Prediction Page</a>
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'login' %}">Login</a>
+        <a class="navbar-brand" style="text-align: center;" href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+    </div>
+</body>
+
+</html>
