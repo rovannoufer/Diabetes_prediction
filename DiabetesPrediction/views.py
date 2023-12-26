@@ -41,42 +41,42 @@ def result(request):
  
     return render(request, "predict.html", {"result2": result1})
 
-def login(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = auth.authenticate(request, username = username, password = password)
-        if user is not None:
-            auth.login(request, user)
-            return redirect('predict')
-        else:
-            error_message = "Invalid username or password"
-            return render(request, 'login.html', {'error_message': error_message})
-    else:
-      return render(request, 'login.html')
+# def login(request):
+#     if request.method == "POST":
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = auth.authenticate(request, username = username, password = password)
+#         if user is not None:
+#             auth.login(request, user)
+#             return redirect('predict')
+#         else:
+#             error_message = "Invalid username or password"
+#             return render(request, 'login.html', {'error_message': error_message})
+#     else:
+#       return render(request, 'login.html')
 
 
-def signup(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
+# def signup(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         email = request.POST['email']
+#         password1 = request.POST['password1']
+#         password2 = request.POST['password2']
 
-        if password1 == password2:
-            try:
-                user = User.objects.create_user(username, email, password1)
-                user.save()
-                auth.login(request, user)
-                return redirect('predict')
-            except:
-                error_message = 'Error on creating account'
-                return render(request, 'signup.html', {'error_message': error_message})
-        else:
-            error_message = 'Password don\'t match'
-            return render(request, 'signup.html', {'error_message': error_message})
-    return render(request, 'signup.html')
+#         if password1 == password2:
+#             try:
+#                 user = User.objects.create_user(username, email, password1)
+#                 user.save()
+#                 auth.login(request, user)
+#                 return redirect('predict')
+#             except:
+#                 error_message = 'Error on creating account'
+#                 return render(request, 'signup.html', {'error_message': error_message})
+#         else:
+#             error_message = 'Password don\'t match'
+#             return render(request, 'signup.html', {'error_message': error_message})
+#     return render(request, 'signup.html')
 
-def logout(request):
-    auth.logout(request)
-    return redirect('login')
+# def logout(request):
+#     auth.logout(request)
+#     return redirect('login')

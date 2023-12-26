@@ -6,7 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.predict,name='predict'),
     path("result/", views.result),
-    path("login/", views.login, name = 'login'),
-    path("logout/", views.logout, name = 'logout'),
-    path("signup/", views.signup, name = 'signup')
+    # path("login/", views.login, name = 'login'),
+    # path("logout/", views.logout, name = 'logout'),
+    # path("signup/", views.signup, name = 'signup')
 ]
